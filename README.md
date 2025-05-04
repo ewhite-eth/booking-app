@@ -17,3 +17,5 @@ used in this code:
 also putted getting user input function in other folder to try to export it and import in main package
 
 not really confident in using map over struct as the second one is more practical and precise
+
+!!! code was written with the help of youtube tutorial video '_'
