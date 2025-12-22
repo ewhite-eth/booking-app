@@ -24,7 +24,7 @@ type UserData struct {
 func main() {
 	greetUser()
 
-	var wg = sync.WaitGroup{}
+	var wg sync.WaitGroup
 
 	for remainingtick > 0 {
 		userName, userEmail, userTickets, city := getUserInput()
@@ -91,7 +91,7 @@ func getUserInput() (string, string, uint, string) {
 
 func booking(remainingtick uint, userTickets uint, userName string, userEmail string, city string) uint {
 	remainingtick -= userTickets
-	//create a map to store the user name and tickets
+	// Create a UserData struct to store user booking information
 	var userData = UserData{
 		userName:    userName,
 		userTickets: userTickets,
