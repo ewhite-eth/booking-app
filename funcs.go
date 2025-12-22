@@ -8,7 +8,9 @@ func ValidateUserInput(userName string, userEmail string, userTickets uint, city
 	atIndex := strings.Index(userEmail, "@")
 	dotIndex := -1
 	if atIndex > 0 {
-		dotIndex = strings.Index(userEmail[atIndex:], ".") + atIndex
+		if dotAfterAt := strings.Index(userEmail[atIndex:], "."); dotAfterAt != -1 {
+			dotIndex = dotAfterAt + atIndex
+		}
 	}
 	isEmailValid := atIndex > 0 && dotIndex > atIndex+1 && dotIndex < len(userEmail)-1
 	isUserTicketsValid := userTickets > 0 && userTickets <= remainingtick
