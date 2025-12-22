@@ -6,7 +6,10 @@ func ValidateUserInput(userName string, userEmail string, userTickets uint, city
 	isNameValid := len(userName) >= 2
 	// Basic email validation: check for '@' and '.' with proper positioning
 	atIndex := strings.Index(userEmail, "@")
-	dotIndex := strings.LastIndex(userEmail, ".")
+	dotIndex := -1
+	if atIndex > 0 {
+		dotIndex = strings.Index(userEmail[atIndex:], ".") + atIndex
+	}
 	isEmailValid := atIndex > 0 && dotIndex > atIndex+1 && dotIndex < len(userEmail)-1
 	isUserTicketsValid := userTickets > 0 && userTickets <= remainingtick
 	isValidCity := city == "Singapore" || city == "London"
