@@ -8,6 +8,7 @@ import (
 
 // Constants
 const tickets uint = 50
+const ticketSendingDelay = 10 * time.Second
 
 var confName = "Go Conference"
 var remainingtick uint = 50
@@ -46,7 +47,7 @@ func main() {
 				fmt.Println("Invalid name. Must be at least 2 characters.")
 			}
 			if !isEmailValid {
-				fmt.Println("Invalid email. Must contain '@' symbol.")
+				fmt.Println("Invalid email. Must contain '@' and '.' symbols.")
 			}
 			if !isValidCity {
 				fmt.Println("Invalid city. Choose Singapore or London.")
@@ -109,7 +110,7 @@ func booking(remainingtick uint, userTickets uint, userName string, userEmail st
 }
 
 func sendTicket(userTickets uint, userName string, userEmail string, wg *sync.WaitGroup) {
-	time.Sleep(10 * time.Second)
+	time.Sleep(ticketSendingDelay)
 	var ticket = fmt.Sprintf("%v tickets for %v", userTickets, userName)
 	fmt.Println("##################")
 	fmt.Printf("Sending ticket:\n%v\nto email address %v\n", ticket, userEmail)
